@@ -1,0 +1,20 @@
+body{
+    background-color: #156EE6;
+}
+
+.box{
+    background-color: white;
+    border: 10px solid #0936B8;
+    height: 415px;
+    width: 500px;
+}
+
+.grid-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.square{
+    border: 0.02px solid black;
+    height: 24px;
+    width: 29.25px;
+}
