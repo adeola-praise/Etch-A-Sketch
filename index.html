@@ -15,10 +15,44 @@
     </div>
     
     <!-- Add Slider-->
-    <div class="slidecontainer">
+    <div class="container">
         <input type="range" min="1" max="60" value="30" class="slider" id="myRange">
         <label>Value: </label>
         <label id="demo"></label>
+    </div>
+
+    <div class="btns">
+        <button id="rainbowBtn">Rainbow</button>
+        <button>Eraser</button>
+        <button class="pickColor">Color Picker</button>
+    </div>
+    
+    <div class="colorPicker">
+        <h2>Choose a Color</h2>
+        <fieldset>
+            <label for="r">R</label>
+            <input type="range" min="0" max="255" id="r" step="1" value="0">
+            <output for="r" id="r_out">0</output>
+        </fieldset>  
+          
+        <fieldset>
+            <label for="g">G</label>
+            <input type="range" min="0" max="255" id="g" step="1" value="0">
+            <output for="g" id="g_out">0</output>
+        </fieldset>
+          
+        <fieldset>
+            <label for="b">B</label>
+            <input type="range" min="0" max="255" id="b" step="1" value="0">
+            <output for="b" id="b_out">0</output>
+        </fieldset>  
+        <div id="hex-color">
+            <output id="hex">#000000</output>
+        </div>
+        <div class="cancelBtn">
+            <button id="ok">Ok</button>
+            <button id="cancel">Cancel</button> 
+        </div>   
     </div>
 
     <script src="./scripts.js"></script>

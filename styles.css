@@ -1,5 +1,8 @@
 body{
     background-color: #156EE6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .box{
@@ -7,6 +10,9 @@ body{
     border: 10px solid #0936B8;
     height: 415px;
     width: 500px;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 .grid-container{
@@ -19,7 +25,7 @@ body{
 }
 
 .slidecontainer {
-    width: 47%; /* Width of the outside container */
+    width: 40%; /* Width of the outside container */
   }
   
   /* The slider itself */
@@ -58,4 +64,93 @@ body{
     border-radius: 50%;
     background: #04AA6D; /* Green background */
     cursor: pointer; /* Cursor on hover */
+  }
+
+  .btns{
+    display: flex;
+    gap: 30px;
+  }
+
+  .btns button{
+    background-color: #050933; /* Green */
+    transition-duration: 0.4s;
+    border-radius: 5px;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin-top: 10px;
+    width: 180px;
+  }
+
+  .colorPicker{
+    display: none;
+    width: 350px;
+    height: 300px;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    align-items: center;
+    flex-direction: column;
+    z-index: 5;
+    right: 3px;
+    bottom: 2px;
+    top: 5px;
+    position: absolute;
+    margin-right: 30px;
+    margin-top: 150px;
+  }
+
+  fieldset{
+    border: none;
+  }
+  output{
+    display: inline-block;
+    min-width: 2.5em;
+  }
+  label{
+    padding: 2px 9px;
+    border-radius: 3px;
+    font-family: 'Roboto', sans-serif;
+    color: #000;
+    font-size: 1.1em;
+  }
+  label[for=r]{
+    background-color: #f00;
+  }
+  label[for=g]{
+    background-color: #0f0;
+  }
+  label[for=b]{
+    background-color: #00f;
+  }
+
+  #hex{
+    min-width: 4.5em;
+    font-size: 2em;
+    text-align: center;
+  }
+
+  #hex-color{
+    width: 250px;
+    background: black;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .cancelBtn button{
+    background-color: #050933; /* Green */
+    transition-duration: 0.4s;
+    border-radius: 5px;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    margin: 10px;
+    width: 90px;
+    
   }
