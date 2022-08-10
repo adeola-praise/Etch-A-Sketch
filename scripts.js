@@ -4,6 +4,9 @@ let gridContainer = document.querySelector('.grid-container');
 // Get the grid select tag
 let gridSelect = document.getElementById('grid-size');
 
+// Store the current chosen grid color
+let currentColor;
+
 // Set the range slider
 var slider = document.getElementById("myRange");
 var output = document.getElementById("demo");
@@ -11,6 +14,9 @@ output.innerHTML = slider.value; // Display the default slider value
 
 // Build grid immediately on app load
 buildGrid(900);
+
+// Color grid black on document load
+colorGrid('DefaultColor');
 
 // Store the grid area in a variable
 let area;
@@ -44,8 +50,11 @@ function buildGrid(area) {
 
         let divHeight = 415/Math.sqrt(area);
         squareDiv.style.height = `${divHeight}px`;
+        
+        // Color the grid with the current chosen color
+        colorGrid(currentColor);
 
-        colorGrid('');
+        // Each time this function builds a grid, I want the current color to be the last color the user picked but on first load, i want the current color to be the default color
     }
 }
 
@@ -63,7 +72,7 @@ function buildGrid(area) {
 
  // Function to change color
  function changeColor(event){
-  console.log(event.currentTarget);
+  hiddenPicker.style.display = 'none';
   switch (event.target.value) {
     case 'Rainbow':
       colorGrid('Rainbow');
@@ -78,7 +87,9 @@ function buildGrid(area) {
       colorGrid(event.target.value);
       break;
   }
+
 }
+
 // Loop through the color buttons
 colorBtns.forEach(function (btn){
   // Assign the value of any button clicked to colorChoice
@@ -89,8 +100,14 @@ colorBtns.forEach(function (btn){
 // Function to color grid
 function colorGrid(colorChoice) {
   let squares = document.getElementsByClassName('square');
+
   // Create an array from the squares
   let squaresArray = Array.from(squares);
+
+  // Assign the color choice as the current color
+  currentColor = colorChoice;
+
+  // Loop through the squares
   squaresArray.forEach(function(item){
     switch (colorChoice) {
       case 'Rainbow':
@@ -101,10 +118,14 @@ function colorGrid(colorChoice) {
         break;
       case 'ColorPicker':
         revealRGB(item);
-        //rgbColor(...[,], item);
+        break;
+      case 'DefaultColor':
+        defaultColor(item);
         break;
       default:
-        defaultColor(item);
+        item.onmouseover = function(){
+          item.style.backgroundColor = currentColor;
+        }
         break;
     }
   })
@@ -113,7 +134,7 @@ function colorGrid(colorChoice) {
 
 // Random color function
 function randomColor(item) {
-  item.onmousedown = function(){
+  item.onmouseover = function(){
     let x = Math.floor(Math.random() * 256);
     let y = Math.floor(Math.random() * 256);
     let z = Math.floor(Math.random() * 256);
@@ -132,7 +153,7 @@ function eraseColor(item) {
 
 // Default color
 function defaultColor(item) {
-  item.onmousedown = function(){
+  item.onmouseover = function(){
     item.style.backgroundColor = 'black';
   }
 }
