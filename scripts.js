@@ -87,14 +87,12 @@ function buildGrid(area) {
       colorGrid(event.target.value);
       break;
   }
-
 }
 
 // Loop through the color buttons
 colorBtns.forEach(function (btn){
   // Assign the value of any button clicked to colorChoice
-  btn.addEventListener('click', changeColor, true)
-  
+  btn.addEventListener('click', changeColor, true) 
 })
 
 // Function to color grid
@@ -167,6 +165,7 @@ let okBtn = document.querySelector('#ok')
 // Get the cancel button to ignore picked color
 let cancelBtn = document.querySelector('#cancel');
 
+let rgbArray = [okBtn,cancelBtn];
 function revealRGB(item) {
     hiddenPicker.style.display = 'flex';
         item.onmouseover = function(){
@@ -176,9 +175,9 @@ function revealRGB(item) {
         hiddenPicker.style.display = 'none';
            
     }
-    cancelBtn.onclick = function(){
+    /*cancelBtn.onclick = function(){
         hiddenPicker.style.display = 'none';
-    }
+    }*/
 }
 
 // SET UP THE COLOR PICKER //
