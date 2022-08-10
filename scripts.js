@@ -45,35 +45,97 @@ function buildGrid(area) {
         let divHeight = 415/Math.sqrt(area);
         squareDiv.style.height = `${divHeight}px`;
 
+        colorGrid('');
     }
-    changeColor();
 }
 
-function changeColor() {
-    let squares = document.getElementsByClassName('square');
+ // Get the random color generator button
+ let randomBtn = document.getElementById('rainbowBtn');
 
-    // Create an array from the squares
-    let squaresArray = Array.from(squares);
+ // Get the erase button
+ let eraseBtn = document.getElementById('erase');
 
-    // Get the random color generator button
-    let randomBtn = document.getElementById('randomBtn');
+ // Get the color picker button
+ let revealColor = document.querySelector('.pickColor');
 
-    // Loop through the square array 
-    squaresArray.forEach(function (item){
-        // Change background color on mouse down
-        item.onmousedown = function(){
-            let x = Math.floor(Math.random() * 256);
-            let y = Math.floor(Math.random() * 256);
-            let z = Math.floor(Math.random() * 256);
-            
-            let bgColor = "rgb(" + x + "," + y + "," + z + ")";
-            item.style.backgroundColor = bgColor;
-        }
-    });
+ // Get all color changing buttons
+ let colorBtns = [randomBtn, eraseBtn, revealColor];
+
+ // Function to change color
+ function changeColor(event){
+  console.log(event.currentTarget);
+  switch (event.target.value) {
+    case 'Rainbow':
+      colorGrid('Rainbow');
+      break;
+    case 'Eraser':
+      colorGrid('Eraser');
+      break;
+    case 'ColorPicker':
+      colorGrid('ColorPicker');
+      break;
+    default:
+      colorGrid(event.target.value);
+      break;
+  }
+}
+// Loop through the color buttons
+colorBtns.forEach(function (btn){
+  // Assign the value of any button clicked to colorChoice
+  btn.addEventListener('click', changeColor, true)
+  
+})
+
+// Function to color grid
+function colorGrid(colorChoice) {
+  let squares = document.getElementsByClassName('square');
+  // Create an array from the squares
+  let squaresArray = Array.from(squares);
+  squaresArray.forEach(function(item){
+    switch (colorChoice) {
+      case 'Rainbow':
+        randomColor(item);
+        break;
+      case 'Eraser':
+        eraseColor(item);
+        break;
+      case 'ColorPicker':
+        revealRGB(item);
+        //rgbColor(...[,], item);
+        break;
+      default:
+        defaultColor(item);
+        break;
+    }
+  })
+  
 }
 
-// Get the color picker button
-let revealColor = document.querySelector('.pickColor');
+// Random color function
+function randomColor(item) {
+  item.onmousedown = function(){
+    let x = Math.floor(Math.random() * 256);
+    let y = Math.floor(Math.random() * 256);
+    let z = Math.floor(Math.random() * 256);
+    
+    let bgColor = "rgb(" + x + "," + y + "," + z + ")";
+    item.style.backgroundColor = bgColor;
+  }
+}
+
+// Eraser Function
+function eraseColor(item) {
+  item.onmouseover = function(){
+    item.style.backgroundColor = 'white';
+  }
+}
+
+// Default color
+function defaultColor(item) {
+  item.onmousedown = function(){
+    item.style.backgroundColor = 'black';
+  }
+}
 
 // Get the color picker
 let hiddenPicker = document.querySelector('.colorPicker');
@@ -84,17 +146,19 @@ let okBtn = document.querySelector('#ok')
 // Get the cancel button to ignore picked color
 let cancelBtn = document.querySelector('#cancel');
 
-function revealRGB() {
+function revealRGB(item) {
     hiddenPicker.style.display = 'flex';
+        item.onmouseover = function(){
+          item.style.backgroundColor = setColor();
+        }
     okBtn.onclick = function(){
         hiddenPicker.style.display = 'none';
+           
     }
     cancelBtn.onclick = function(){
         hiddenPicker.style.display = 'none';
     }
 }
-
-revealColor.addEventListener('click', revealRGB);
 
 // SET UP THE COLOR PICKER //
 let r = document.querySelector('#r'),
@@ -112,7 +176,8 @@ function setColor(){
         b_hex = parseInt(b.value, 10).toString(16),
         hex = "#" + pad(r_hex) + pad(g_hex) + pad(b_hex);
         hex_box.style.backgroundColor = hex; 
-    hex_out.value = hex;
+        hex_out.value = hex;
+        return (hex);
   }
   
   function pad(n){
@@ -148,16 +213,4 @@ function setColor(){
     setColor();
     b_out.value = b.value;
   }, false);
-
-// Create a function that would generate random rgb colors
-// so I need the entire rgb colors and randomly generate them
-
-function random_bg_color() {
-    
-    
-  
-    //document.body.style.background = bgColor;
-}
-
-random_bg_color();
 
