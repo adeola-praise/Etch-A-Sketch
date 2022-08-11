@@ -7,6 +7,13 @@ let gridSelect = document.getElementById('grid-size');
 // Store the current chosen grid color
 let currentColor;
 
+// Get the box container
+let box = document.querySelector('.box');
+
+// Get the height and width of the box container
+let boxWidth = box.clientWidth;
+let boxHeight = box.clientHeight;
+
 // Set the range slider
 var slider = document.getElementById("myRange");
 var output = document.getElementById("demo");
@@ -45,16 +52,14 @@ function buildGrid(area) {
         // Append the square div to the grid container
         gridContainer.appendChild(squareDiv);
 
-        let divWidth = 500/Math.sqrt(area);
+        let divWidth = boxWidth/Math.sqrt(area);
         squareDiv.style.width = `${divWidth}px`;
 
-        let divHeight = 415/Math.sqrt(area);
+        let divHeight = boxHeight/Math.sqrt(area);
         squareDiv.style.height = `${divHeight}px`;
         
         // Color the grid with the current chosen color
         colorGrid(currentColor);
-
-        // Each time this function builds a grid, I want the current color to be the last color the user picked but on first load, i want the current color to be the default color
     }
 }
 
@@ -95,6 +100,9 @@ colorBtns.forEach(function (btn){
   btn.addEventListener('click', changeColor, true) 
 })
 
+// Store the number of passes
+let passes = 0;
+
 // Function to color grid
 function colorGrid(colorChoice) {
   let squares = document.getElementsByClassName('square');
@@ -127,15 +135,15 @@ function colorGrid(colorChoice) {
         break;
     }
   })
-  
 }
 
 // Random color function
 function randomColor(item) {
+  // i have gotten a way to store the number of passes but for now i am 
   item.onmouseover = function(){
     let x = Math.floor(Math.random() * 256);
-    let y = Math.floor(Math.random() * 256);
-    let z = Math.floor(Math.random() * 256);
+    let y = 100+ Math.floor(Math.random() * 256);
+    let z = 50+ Math.floor(Math.random() * 256);
     
     let bgColor = "rgb(" + x + "," + y + "," + z + ")";
     item.style.backgroundColor = bgColor;
@@ -153,6 +161,8 @@ function eraseColor(item) {
 function defaultColor(item) {
   item.onmouseover = function(){
     item.style.backgroundColor = 'black';
+    let opacity = Number(item.style.opacity);
+        item.style.opacity = opacity >= 1 ? "1" : opacity + 0.1 + "";
   }
 }
 
@@ -162,22 +172,16 @@ let hiddenPicker = document.querySelector('.colorPicker');
 // Get the okay button to confirm picked color
 let okBtn = document.querySelector('#ok') 
 
-// Get the cancel button to ignore picked color
-let cancelBtn = document.querySelector('#cancel');
-
-let rgbArray = [okBtn,cancelBtn];
+// Reveal the RGB color picker
 function revealRGB(item) {
     hiddenPicker.style.display = 'flex';
         item.onmouseover = function(){
           item.style.backgroundColor = setColor();
         }
+        
     okBtn.onclick = function(){
-        hiddenPicker.style.display = 'none';
-           
+        hiddenPicker.style.display = 'none';      
     }
-    /*cancelBtn.onclick = function(){
-        hiddenPicker.style.display = 'none';
-    }*/
 }
 
 // SET UP THE COLOR PICKER //
