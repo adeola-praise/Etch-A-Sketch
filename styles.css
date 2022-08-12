@@ -15,6 +15,14 @@ body{
     margin-bottom: 30px;
 }
 
+#pixel{
+  font-weight: 600;
+}
+
+#demo{
+  font-weight: 600;
+}
+
 .grid-container{
     display: flex;
     flex-wrap: wrap;
@@ -30,15 +38,15 @@ body{
   
   /* The slider itself */
   .slider {
-    -webkit-appearance: none;  /* Override default CSS styles */
+    -webkit-appearance: none;  
     appearance: none;
-    width: 100%; /* Full-width */
-    height: 15px; /* Specified height */
-    background: #d3d3d3; /* Grey background */
+    width: 100%; 
+    height: 15px; 
+    background: #d3d3d3; 
     border-radius: 5px; 
-    outline: none; /* Remove outline */
-    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    outline: none;
+    opacity: 0.7; 
+    -webkit-transition: .2s; 
     transition: opacity .2s;
   }
   
@@ -159,3 +167,113 @@ body{
     width: 100%;
     height: 100%;
   }
+
+  @media (max-width: 900px){
+    .box{
+      border: 10px solid #0936B8;
+      height: 415px;
+      width: 400px;
+      border-radius: 10px;
+      margin-top: 50px;
+      margin-bottom: 30px;
+  }
+
+  .btns button{
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 15px;
+    margin-top: 10px;
+    width: 150px;
+  }
+
+  .colorPicker{
+    margin-top: 250px;
+  }
+
+  .btns{
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+  }
+  
+  .container{
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 500px){
+  .box{
+    border: 10px solid #0936B8;
+    height: 365px;
+    width: 300px;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    margin-left: 10px;
+}
+
+.btns button{
+  padding: 12px 20px;
+  text-align: center;
+  font-size: 12px;
+  margin-top: 10px;
+  width: 110px;
+}
+
+.colorPicker{
+  display: none;
+  width: 250px;
+  height: 250px;
+  border-radius: 5px;
+  align-items: center;
+  flex-direction: column;
+  z-index: 5;
+  right: 3px;
+  bottom: 2px;
+  top: 5px;
+  position: absolute;
+  margin-right: 30px;
+  margin-top: 300px;
+}
+
+#hex{
+  min-width: 4.5em;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+#hex-color{
+  width: 150px;
+  justify-content: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+label{
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 1em;
+}
+
+.colorPicker h2{
+  font-size: 1.2em;
+}
+
+.btns{
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.cancelBtn button{
+  padding: 2px 7px;
+  font-size: 15px;
+  margin: 10px;
+  width: 70px;
+}
+
+.container{
+  margin-top: 20px;
+}
+}
+

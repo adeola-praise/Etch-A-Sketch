@@ -161,8 +161,8 @@ function eraseColor(item) {
 function defaultColor(item) {
   item.onmouseover = function(){
     item.style.backgroundColor = 'black';
-    let opacity = Number(item.style.opacity);
-        item.style.opacity = opacity >= 1 ? "1" : opacity + 0.1 + "";
+    //let opacity = Number(item.style.opacity);
+        //item.style.opacity = opacity >= 1 ? "1" : opacity + 0.1 + "";
   }
 }
 
