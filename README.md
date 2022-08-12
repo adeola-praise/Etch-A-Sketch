@@ -1,7 +1,9 @@
 # Etch-A-Sketch
 
 ## Description
-A sketch application built with Javscript, HTML and CSS.
+A sketch application built with Javscript, HTML and CSS. <br>
+<br>
+**Live Preview**: https://adeola-praise.github.io/Etch-A-Sketch
 ## Features
 - **Adjustable Pixel Size**: The pixel size of of the drawing grid can be adjusted to various dimensions, the lowest being 1 X 1 and the highest 60 X 60.
 - **Color Picker**: A color picker button has been added to enable the users choose any hex color of their choice.
